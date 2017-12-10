@@ -25,7 +25,7 @@ class StringGenerator extends Component {
           type='number'
           hintText='Enter string length (max: 9999).'
           value={ this.state.length }
-          onChange={ this.validateNonNegative } />
+          onChange={ this.onChangeStringLength } />
         <RaisedButton
           className='button'
           label='Generate'
@@ -47,17 +47,25 @@ class StringGenerator extends Component {
     )
   }
 
+  onChangeStringLength = (e, newValue) => {
+    const length = this.validateLength(newValue);
+    this.setState({ length, showSnackbar: false });
+  };
+
+  // Return the previos state if the length is not numeric
+  // and its value is not between 0 and 10,000.
+  validateLength = (length) => {
+    if (!length.match('^$|^[1-9]\\d{0,3}$')) {
+      return this.state.length;
+    }
+    return length;
+  };
+
   onClickGenerateString = () => {
     const result = this.randomString(this.state.length);
     this.setState({ result, showSnackbar: false });
   };
 
-  validateNonNegative = (e, length) => {
-    if (!length.match('^$|^[1-9]\\d{0,3}$')) {
-      length = this.state.length;
-    }
-    this.setState({ length });
-  };
 
   randomString = (length) => {
     let text = "";
