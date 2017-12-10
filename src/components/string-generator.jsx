@@ -48,17 +48,10 @@ class StringGenerator extends Component {
   }
 
   onChangeStringLength = (e, newValue) => {
-    const length = this.validateLength(newValue);
+    // Return the previos state if newValue is not numeric
+    // and if it is not between 0 and 10,000.
+    const length = newValue.match('^$|^[1-9]\\d{0,3}$') ? newValue : this.state.length;
     this.setState({ length, showSnackbar: false });
-  };
-
-  // Return the previos state if the length is not numeric
-  // and its value is not between 0 and 10,000.
-  validateLength = (length) => {
-    if (!length.match('^$|^[1-9]\\d{0,3}$')) {
-      return this.state.length;
-    }
-    return length;
   };
 
   onClickGenerateString = () => {
