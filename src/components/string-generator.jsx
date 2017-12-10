@@ -37,7 +37,7 @@ class StringGenerator extends Component {
           multiLine={ true }
           rowsMax={ 12 } />
         <CopyToClipboard text={ this.state.result }
-          onClick={ () => this.setState({ showSnackbar: true }) } >
+          onCopy={ () => this.setState({ showSnackbar: true }) } >
           <RaisedButton className='button' label='Copy to clipboard.' />
         </CopyToClipboard>
         <Snackbar message='Copied to clipboard.'
