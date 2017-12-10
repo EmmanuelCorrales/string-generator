@@ -21,6 +21,7 @@ class StringGenerator extends Component {
     return (
       <div className='container'>
         <TextField
+          inputStyle={ { textAlign: "center" } }
           type='number'
           hintText='Enter string length (max: 9999).'
           value={ this.state.length }
