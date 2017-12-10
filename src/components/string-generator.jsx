@@ -7,7 +7,10 @@ class StringGenerator extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { length: '' };
+    this.state = {
+      length: '',
+      result: ''
+    };
   }
 
   render() {
@@ -18,14 +21,20 @@ class StringGenerator extends Component {
           hintText='Enter string length'
           value={ this.state.length }
           onChange={ this.validateNonNegative } />
-        <RaisedButton className='button' label='Generate' />
+        <RaisedButton
+          className='button'
+          label='Generate'
+          onClick={ this.generateRandomString } />
         <br />
         <TextField
-          hintText="MultiLine with rows: 2 and rowsMax: 4"
-          multiLine={true}
-          rows={2}
-          rowsMax={4} />
-        <RaisedButton className='button' label="Copy to clipboard" />
+          hintText="Generated string will show up here."
+          value={ this.state.result }
+          multiLine={ true }
+          rows={ 8 }
+          rowsMax={ 12 } />
+        <RaisedButton 
+          className='button'
+          label="Copy to clipboard" />
       </div>
     )
   }
@@ -33,7 +42,21 @@ class StringGenerator extends Component {
   validateNonNegative = (e, newValue) => {
     const length = newValue > 0 ? newValue : '';
     this.setState({ length });
-  }
+  };
+
+  generateRandomString = () => {
+    const result = this.randomString(this.state.length);
+    this.setState({ result });
+  };
+
+  randomString = (length) => {
+    let text = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(let i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  };
 }
 
 export default StringGenerator;
