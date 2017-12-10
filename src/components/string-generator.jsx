@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 import '../styles/strings-generator.css'
 
 class StringGenerator extends Component {
@@ -9,7 +12,8 @@ class StringGenerator extends Component {
     super(props);
     this.state = {
       length: '',
-      result: ''
+      result: '',
+      showSnackbar: false
     };
   }
 
@@ -24,29 +28,32 @@ class StringGenerator extends Component {
         <RaisedButton
           className='button'
           label='Generate'
-          onClick={ this.generateRandomString } />
+          onClick={ this.onClickGenerateString } />
         <br />
         <TextField
-          hintText="Generated string will show up here."
+          hintText='Generated string will show up here.'
           value={ this.state.result }
           multiLine={ true }
-          rows={ 8 }
           rowsMax={ 12 } />
-        <RaisedButton 
-          className='button'
-          label="Copy to clipboard" />
+        <CopyToClipboard text={ this.state.result }
+          onClick={ () => this.setState({ showSnackbar: true }) } >
+          <RaisedButton className='button' label='Copy to clipboard.' />
+        </CopyToClipboard>
+        <Snackbar message='Copied to clipboard.'
+          open={ this.state.showSnackbar }
+          autoHideDuration={ 3000 } />
       </div>
     )
   }
 
+  onClickGenerateString = () => {
+    const result = this.randomString(this.state.length);
+    this.setState({ result, showSnackbar: false });
+  };
+
   validateNonNegative = (e, newValue) => {
     const length = newValue > 0 ? newValue : '';
     this.setState({ length });
-  };
-
-  generateRandomString = () => {
-    const result = this.randomString(this.state.length);
-    this.setState({ result });
   };
 
   randomString = (length) => {
