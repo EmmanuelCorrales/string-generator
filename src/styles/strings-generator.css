@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-warp: wrap;
+  align-items: center;
+}
+
+.button {
+  max-width: 320px;
+}
