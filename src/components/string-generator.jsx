@@ -22,7 +22,7 @@ class StringGenerator extends Component {
       <div className='container'>
         <TextField
           type='number'
-          hintText='Enter string length'
+          hintText='Enter string length (max: 9999).'
           value={ this.state.length }
           onChange={ this.validateNonNegative } />
         <RaisedButton
@@ -51,8 +51,10 @@ class StringGenerator extends Component {
     this.setState({ result, showSnackbar: false });
   };
 
-  validateNonNegative = (e, newValue) => {
-    const length = newValue > 0 ? newValue : '';
+  validateNonNegative = (e, length) => {
+    if (!length.match('^$|^[1-9]\\d{0,3}$')) {
+      length = this.state.length;
+    }
     this.setState({ length });
   };
 
