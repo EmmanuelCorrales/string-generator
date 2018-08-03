@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://string-generator.emmanuelcorrales.com",
   "dependencies": {
+    "@material-ui/core": "^1.4.2",
     "react": "^16.2.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",
