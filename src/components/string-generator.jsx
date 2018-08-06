@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import TextField from '@material-ui/core/TextField';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import '../styles/strings-generator.css'
@@ -21,24 +21,25 @@ class StringGenerator extends Component {
     return (
       <div className='container'>
         <TextField
-          inputStyle={ { textAlign: "center" } }
           type='number'
-          hintText='Enter string length (max: 9999).'
+          placeholder='Enter string length (max: 9999).'
           value={ this.state.length }
           onChange={ this.onChangeStringLength } />
-        <RaisedButton
-          className='button'
-          label='Generate'
-          onClick={ this.onClickGenerateString } />
+        <Button variant='contained'
+          onClick={ this.onClickGenerateString } >
+          Generate
+        </Button>
         <br />
-        <TextField
-          hintText='Generated string will show up here.'
+        <TextField multiline
+          placeholder='Generated string will show up here.'
           value={ this.state.result }
-          multiLine={ true }
-          rowsMax={ 12 } />
+          rowsMax={ 12 }
+          margin="normal" />
         <CopyToClipboard text={ this.state.result }
           onCopy={ () => this.setState({ showSnackbar: true }) } >
-          <RaisedButton className='button' label='Copy to clipboard.' />
+          <Button variant='contained'>
+            Copy to clipboard.
+          </Button>
         </CopyToClipboard>
         <Snackbar message='Copied to clipboard.'
           open={ this.state.showSnackbar }
@@ -47,9 +48,10 @@ class StringGenerator extends Component {
     )
   }
 
-  onChangeStringLength = (e, newValue) => {
+  onChangeStringLength = event => {
     // Return the previos state if newValue is not numeric
     // and if it is not between 0 and 10,000.
+    const newValue = event.target.value;
     const length = newValue.match('^$|^[1-9]\\d{0,3}$') ? newValue : this.state.length;
     this.setState({ length, showSnackbar: false });
   };
