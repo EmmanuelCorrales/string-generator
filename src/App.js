@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
-import NavBar from './components/navbar';
+import Navigation from './components/navigation';
 import Home from './components/home';
 import StringGenerator from './components/string-generator';
 import Bcrypt from './components/Bcrypt';
@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
+        <Navigation />
         <main>
           <Switch>
             <Route exact path='/' component={ Home }/>

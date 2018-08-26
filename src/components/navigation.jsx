@@ -10,7 +10,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-class NavBar extends Component {
+class Navigation extends Component {
 
   state = {
     isDrawerOpen: false
@@ -61,4 +61,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default Navigation;
