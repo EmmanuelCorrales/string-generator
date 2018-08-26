@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
@@ -38,15 +39,21 @@ class NavBar extends Component {
           onOpen={ this.toggleDrawer }
           onClose={ this.toggleDrawer } >
           <List component="nav">
-            <ListItem button>
-              <ListItemText primary="Home" href="/" />
-            </ListItem>
-            <ListItem button component="a" href="/string-generator">
-              <ListItemText primary="String Generator" />
-            </ListItem>
-            <ListItem button component="a" href="/bcrypt">
-              <ListItemText primary="Bcrypt" />
-            </ListItem>
+            <Link to='/'>
+              <ListItem button>
+                <ListItemText primary="Home" />
+              </ListItem>
+            </Link>
+            <Link to='/string-generator'>
+              <ListItem button>
+                <ListItemText primary="String Generator" />
+              </ListItem>
+            </Link>
+            <Link to='/bcrypt'>
+              <ListItem button>
+                <ListItemText primary="Bcrypt" />
+              </ListItem>
+            </Link>
           </List>
         </SwipeableDrawer>
       </div>
