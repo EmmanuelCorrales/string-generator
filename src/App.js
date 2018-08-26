@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import NavBar from './components/navbar';
 import Home from './components/home';
 import StringGenerator from './components/string-generator';
-import Bcrypt from './components/bcrypt';
+import Bcrypt from './components/Bcrypt';
 
 import logo from './logo.svg';
 import './App.css';
