@@ -4,7 +4,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import TextField from '@material-ui/core/TextField';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import '../styles/strings-generator.css'
+import './strings-generator.css'
 
 class StringGenerator extends Component {
 

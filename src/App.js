@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import Navigation from './components/navigation';
 import Home from './components/home';
-import StringGenerator from './components/string-generator';
+import StringGenerator from './components/StringGenerator';
 import Bcrypt from './components/Bcrypt';
 
 import logo from './logo.svg';
