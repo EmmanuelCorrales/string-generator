@@ -9,11 +9,22 @@ import './bcrypt.css';
 class Bcrypt extends Component {
   state = {
     textToHash: '',
-    hashedText: ''
+    hashedText: '',
+    hashToMatch: '',
+    stringToMatch: '',
+    matchResult: ''
   };
 
   onChangeTextToHash = (e) => {
     this.setState({ textToHash: e.target.value });
+  };
+
+  onChangeHashToMatch = (e) => {
+    this.setState({ hashToMatch: e.target.value });
+  };
+
+  onChangeStringToMatch = (e) => {
+    this.setState({ stringToMatch: e.target.value });
   };
 
   hashText = () => {
@@ -22,8 +33,21 @@ class Bcrypt extends Component {
     });
   };
 
+  compareHash = () => {
+    const { hashToMatch, stringToMatch } = this.state;
+    const result = bcrypt.compareSync(stringToMatch, hashToMatch);
+    const message = result==1? "String and Hash match!":"String and Hash do not match!";
+    this.setState({ matchResult: message });
+  };
+
   render() {
-    const { textToHash, hashedText } = this.state;
+    const {
+      textToHash,
+      hashedText,
+      hashToMatch,
+      stringToMatch,
+      matchResult
+    } = this.state;
 
     return (
       <div className='bcrypt'>
@@ -50,18 +74,26 @@ class Bcrypt extends Component {
           <Typography variant='headline'>Decrypt</Typography>
           <br/>
           <TextField placeholder='Hash to check'
-            value={ textToHash } />
+            onChange={ this.onChangeHashToMatch }
+            value={ hashToMatch } />
           <br/>
           <br/>
           <div>
             <TextField
+              value={ stringToMatch }
               placeholder='String to check'
+              onChange={ this.onChangeStringToMatch }
               rowsMax={ 12 } />
             &nbsp;
-            <Button variant='contained' >
+            <Button variant='contained'
+              onClick={ this.compareHash } >
               Encrypt
             </Button>
           </div>
+          <br/>
+          <Typography variant='nowrap'>
+          { matchResult }
+          </Typography>
         </div>
       </div>
     );
