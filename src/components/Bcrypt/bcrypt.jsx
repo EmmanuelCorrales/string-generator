@@ -37,7 +37,7 @@ class Bcrypt extends Component {
             &nbsp;
             <Button variant='contained'
               onClick={ this.hashText } >
-              Encrypt
+              Hash!
             </Button>
           </div>
           <br/>
