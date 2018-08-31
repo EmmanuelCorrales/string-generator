@@ -39,17 +39,17 @@ class Navigation extends Component {
           onOpen={ this.toggleDrawer }
           onClose={ this.toggleDrawer } >
           <List component="nav">
-            <Link to='/'>
+            <Link to='/' onClick={ this.toggleDrawer } >
               <ListItem button>
                 <ListItemText primary="Home" />
               </ListItem>
             </Link>
-            <Link to='/string-generator'>
+            <Link to='/string-generator' onClick={ this.toggleDrawer } >
               <ListItem button>
                 <ListItemText primary="String Generator" />
               </ListItem>
             </Link>
-            <Link to='/bcrypt'>
+            <Link to='/bcrypt' onClick={ this.toggleDrawer } >
               <ListItem button>
                 <ListItemText primary="Bcrypt" />
               </ListItem>
