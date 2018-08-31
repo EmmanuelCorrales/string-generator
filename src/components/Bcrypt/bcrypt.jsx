@@ -27,7 +27,6 @@ class Bcrypt extends Component {
 
     return (
       <div className='bcrypt'>
-        <br/>
         <div className='item'>
           <div>
             <Typography variant='headline'>Encrypt</Typography>
