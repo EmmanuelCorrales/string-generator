@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import bcrypt from 'bcryptjs';
 
 import './bcrypt.css';
@@ -12,7 +14,8 @@ class Bcrypt extends Component {
     hashedText: '',
     hashToMatch: '',
     stringToMatch: '',
-    matchResult: ''
+    matchResult: '',
+    showSnackbar: false
   };
 
   onChangeTextToHash = (e) => {
@@ -36,7 +39,7 @@ class Bcrypt extends Component {
   compareHash = () => {
     const { hashToMatch, stringToMatch } = this.state;
     const result = bcrypt.compareSync(stringToMatch, hashToMatch);
-    const message = result==1? "String and Hash match!":"String and Hash do not match!";
+    const message = result == 1 ? "String and Hash match!" : "String and Hash do not match!";
     this.setState({ matchResult: message });
   };
 
@@ -61,14 +64,26 @@ class Bcrypt extends Component {
             &nbsp;
             <Button variant='contained'
               onClick={ this.hashText } >
-              Hash!
+              Hash String
             </Button>
           </div>
           <br/>
-          <TextField multiline
-            placeholder='Encrypted string.'
-            rowsMax={ 12 }
-            value={ hashedText } />
+          <div>
+            <TextField
+              placeholder='Encrypted string.'
+              rowsMax={ 12 }
+              value={ hashedText } />
+            &nbsp;
+            <CopyToClipboard text={ hashedText }
+              onCopy={ () => this.setState({ showSnackbar: true }) } >
+              <Button variant='contained'>
+                Copy to Clipboard
+              </Button>
+            </CopyToClipboard>
+            <Snackbar message='Copied to clipboard.'
+              open={ this.state.showSnackbar }
+              autoHideDuration={ 3000 } />
+          </div>
         </div>
         <div className='item'>
           <Typography variant='headline'>Decrypt</Typography>
