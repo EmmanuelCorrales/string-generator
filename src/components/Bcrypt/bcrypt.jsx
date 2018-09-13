@@ -49,7 +49,8 @@ class Bcrypt extends Component {
       hashedText,
       hashToMatch,
       stringToMatch,
-      matchResult
+      matchResult,
+      showSnackbar
     } = this.state;
 
     return (
@@ -80,9 +81,6 @@ class Bcrypt extends Component {
                 Copy to Clipboard
               </Button>
             </CopyToClipboard>
-            <Snackbar message='Copied to clipboard.'
-              open={ this.state.showSnackbar }
-              autoHideDuration={ 3000 } />
           </div>
         </div>
         <div className='item'>
@@ -110,6 +108,9 @@ class Bcrypt extends Component {
           { matchResult }
           </Typography>
         </div>
+        <Snackbar message='Copied to clipboard.'
+          open={ showSnackbar }
+          autoHideDuration={ 3000 } />
       </div>
     );
   }
