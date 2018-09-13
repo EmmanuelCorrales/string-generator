@@ -59,11 +59,12 @@ class Bcrypt extends Component {
           <div>
             <Typography variant='headline'>Encrypt</Typography>
             <br/>
-            <TextField placeholder='String to encrypt.'
+            <TextField
+              placeholder='String to encrypt.'
               onChange={ this.onChangeTextToHash }
               value={ textToHash } />
             &nbsp;
-            <Button variant='contained'
+            <Button variant='contained' className='button'
               onClick={ this.hashText } >
               Hash String
             </Button>
@@ -75,9 +76,9 @@ class Bcrypt extends Component {
               rowsMax={ 12 }
               value={ hashedText } />
             &nbsp;
-            <CopyToClipboard text={ hashedText }
+            <CopyToClipboard text={ hashedText } className='button'
               onCopy={ () => this.setState({ showSnackbar: true }) } >
-              <Button variant='contained'>
+              <Button variant='contained' >
                 Copy to Clipboard
               </Button>
             </CopyToClipboard>
